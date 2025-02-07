@@ -1,5 +1,5 @@
 name: ci
-on: [push,pull_request]
+on: [push,pull_request,workflow_dispatch]
 jobs:
   test:
     name: Node ${{ matrix.node }} / ${{ matrix.os }}
@@ -20,6 +20,6 @@ jobs:
       - run: npm run build --if-present
       - run: npm test
       - uses: actions/upload-artifact@v4
-      - with:
+        with:
           name: build-artifact
           path: ./build
